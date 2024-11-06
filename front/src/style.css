@@ -1,0 +1,427 @@
+body{
+    margin:0;
+    background: #16181d;
+    color:aliceblue;
+}
+
+/*Header------------------------------------------------*/
+
+.header-button{
+    padding:1vmin;
+    margin: auto;
+    display: grid;
+    align-items: center;
+    font-size: 2.5vmin;
+    border-radius: 0.5vmin;
+    color:aliceblue;
+    text-decoration: none;
+    margin-left: 1vmin;
+    transition:0.1s;
+
+}
+
+
+.header-button:hover{
+    background:rgb(70, 72, 81);
+    transition:0.1s
+}
+
+.header-login-button{
+    position: absolute;
+    right:1vmin;
+    margin:0.5vmin;
+}
+
+.header-inner-wrapper{
+    display: flex;
+}
+.header-outer-wrapper{
+    backdrop-filter: blur(6px);
+    position: fixed;
+    width: 90vw;
+    padding-top: 1vmin;
+    padding-bottom: 1vmin;
+    left: 5vw;
+    top:0;
+    display: flex;
+    border-bottom-left-radius: 1vmin;
+    border-bottom-right-radius: 1vmin;
+    background: rgba(39, 40, 45, 0.5);
+}
+
+.header-profile-button-outer-wrapper{
+    color:aliceblue;
+    text-decoration: none;
+    font-size: 2.5vmin;
+    display: flex;
+    border-radius: 1vmin;
+    transition:0.1s;
+    padding:0.5vmin;
+    position: absolute;
+    right:1vmin;
+    margin:0.5vmin;
+}
+
+.header-profile-button-outer-wrapper:hover{
+    background:rgb(70, 72, 81);
+    transition:0.1s
+}
+
+.header-profile-button-image{
+    border-radius: 50%;
+    width: 5vmin;
+    height: 5vmin;
+}
+
+.header-profile-button-name{
+    height: 5vmin;
+    margin-left:1vmin;
+    margin-right:1vmin;
+    display: grid;
+    line-height: 5vmin;
+    align-items: center;
+}
+
+.header-logo-button{
+    width:7vmin;
+    height:7vmin;
+    margin: auto;
+    margin-left: 1.5vmin;
+}
+
+.header-logo-button-image{
+    width:7vmin;
+    height:7vmin;
+
+}
+
+/*Main-------------------------------------------------------*/
+
+.body-main-wrapper{
+    width: 60vw;
+    margin-left: 20vw;
+    margin-top: 10vmin;
+}
+
+.body-main-image-line{
+    display: flex;
+}
+
+.small-image{
+    width:13vw;
+    height: 13vw;
+    object-fit: cover;
+    border-radius: 15px;
+    margin:1vw;
+    transition: 0.1s;
+}
+.small-image:hover{
+    cursor: pointer;
+    width: 15vw;
+    height: 15vw;
+    margin: 0;
+    transition: 0.1s;
+}
+
+/*Profile------------------------------------------------*/
+
+.profile-body{
+    width: 60vw;
+    margin: auto;
+    margin-top: 10vmin;
+    border: 1px, black,solid;
+}
+
+.profile-info-wrapper{
+    display: flex;
+}
+
+.profile-info-image{
+    width:15vw;
+    height:15vw;
+    object-fit: cover;
+}
+
+.profile-info-name-about{
+    width: 40vw;
+    margin-left: 5vw;
+}
+
+.profile-info-name{
+    font-size: 5vmin;
+}
+.profile-info-about{
+    font-size: 2.5vmin;
+}
+
+.profile-images{
+    margin-top: 3vmin;
+}
+
+.profile-images-text{
+    font-size: 3vmin;
+}
+
+/*Image overlay------------------------------------*/
+
+.image-overlay-shadow{
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(6px);
+    position: fixed;
+    top:0;
+}
+
+.image-overlay{
+    position: fixed;
+    display: flex;
+    top:10vmin;
+    width:55vw;
+    height:80vmin;
+    left:22.5vw;
+
+}
+
+.image-overlay-image-wrapper{
+    width:37.5vw;
+    height: 55vmin;
+    background: #292a30;
+    border-top-left-radius: 1vmin;
+}
+
+.image-overlay-image{
+    width:37.5vw;
+    height: 55vmin;
+    object-fit: contain;
+    border-top-left-radius: 1vmin;
+}
+
+/*-----------------------description-----------------------*/
+
+.image-overlay-description{
+    width:37.5vw;
+    height: 25vmin;
+    background: #131417;
+    border-bottom-left-radius: 1vmin;
+
+}
+
+.image-overlay-description-profile-like{
+    display: flex;
+    position: relative;
+    height: 7vmin;
+}
+
+.image-overlay-description-profile{
+    position: absolute;
+    color:aliceblue;
+    text-decoration: none;
+    font-size: 2.5vmin;
+    display: flex;
+    left:1vw;
+    top:1vmin;
+}
+.image-overlay-description-like-wrapper{
+    display: flex;
+    font-size: 2.5vmin;
+    position: absolute;
+    right:1vw;
+    top:1vmin;
+}
+
+.image-overlay-description-like-count{
+    margin:auto;
+    position: relative;
+    height:5vmin;
+    display: grid;
+    line-height: 5vmin;
+    align-items: center;
+}
+
+.image-overlay-description-like-button{
+    width:5vmin;
+    height:5vmin;
+}
+
+.image-overlay-description-about{
+    font-size: 2vmin;
+    margin-left:1vw;
+    margin-right: 1vw;
+    height:18vmin;
+}
+
+/*--------------------comment-------------------------------*/
+
+.image-overlay-comments-wrapper{
+    width:17.5vw;
+    height: 80vmin;
+    background: #202126;
+    border-bottom-right-radius: 1vmin;
+    border-top-right-radius: 1vmin;
+}
+
+.image-overlay-comments{
+    width:17.5vw;
+    height: 60vmin;
+    background: #202126;
+    border-top-right-radius: 1vmin;
+    overflow-y:auto
+}
+
+.image-overlay-comments-single{
+    position: relative;
+    width: 15.5vw;
+    margin:auto;
+    margin-top:2vmin;
+}
+
+.image-overlay-comments-single-profile-date{
+    display: flex;
+}
+
+.image-overlay-comment-profile{
+    color:aliceblue;
+    text-decoration: none;
+    font-size: 2vmin;
+    display: flex;
+    left:1vw;
+    top:1vmin;
+}
+
+.image-overlay-comment-profile-image{
+    border-radius: 50%;
+    width: 3vmin;
+    height: 3vmin;
+}
+
+.image-overlay-comment-profile-name{
+    height: 3vmin;
+    margin-left:1vmin;
+    margin-right:1vmin;
+    display: grid;
+    line-height: 3vmin;
+    align-items: center;
+}
+
+.image-overlay-comment-like-wrapper{
+    display: flex;
+    font-size: 2vmin;
+    margin-top:0.5vmin;
+}
+
+.image-overlay-comment-like-count{
+    position: relative;
+    height:3vmin;
+    display: grid;
+    line-height: 3vmin;
+    align-items: center;
+    margin-left: 0.25vw;
+}
+
+.image-overlay-comment-like-button{
+    width:3vmin;
+    height:3vmin;
+}
+
+.image-overlay-comments::-webkit-scrollbar{
+    width:1vmin;
+}
+
+.image-overlay-comments::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-top-right-radius: 1vmin;
+}
+  
+.image-overlay-comments::-webkit-scrollbar-thumb {
+    background: #41434c;
+    border-top-right-radius: 1vmin;
+}
+  
+.image-overlay-comments::-webkit-scrollbar-thumb:hover {
+    background: #606370;
+}
+
+.image-overlay-comments-input{
+    height:20vmin;
+    width:17.5vw;
+}
+
+.image-overlay-comments-input-input{
+    display: block;
+    height:19.5vmin;
+    width:17.5vw;
+    background:#292a30;
+    color:white;
+    outline: none;
+    border:none;
+    font-size: 2vmin;
+    padding:0;
+    text-align: center;
+    border-top: #131417 0.25vmin solid;
+}
+
+.image-overlay-comments-input-input:focus{
+    outline: none;
+    border: #202126 0.25vmin solid;
+    border:none;
+}
+
+
+/*--------------------Login Form-------------------------------*/
+
+
+.login-close{
+    width: 99vw;
+    height: 100vh;
+    position: absolute;
+    backdrop-filter: blur(6px);
+}
+
+.login-form-outer-wrapper{
+    position: fixed;
+    top:10vmin;
+    width:25vw;
+    left:35vw;
+    background: #202126;
+    border-radius: 1vmin;
+}
+
+.login-form{
+    display: block;
+    text-align: center;
+    font-size:2vmin;
+}
+
+.login-form-row-wrapper{
+
+}
+
+.new-account-button{
+    width:fit-content;
+    margin: auto;
+    margin-bottom: 1vmin;
+}
+
+.login-form-input{
+    outline:none;
+    border: white 0.2vmin solid;
+    width: 15vw;
+    height: 3vmin;
+    border-radius: 0.5vmin;
+    background: #131417;
+    color:white;
+    font-size:2vmin;
+
+}
+
+.login-submit-button{
+    font-size:1.75vmin;
+    margin: auto;
+    margin-top: 1vmin;
+    width:fit-content;
+    padding:0.5vmin;
+    border-radius: 0.5vmin;
+    background: #474953;
+    margin-bottom: 1vmin;
+}
+
