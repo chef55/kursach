@@ -18,10 +18,9 @@ function LoginButton(props) {
       return out
     }
     return(
-        <div value="Log In" className={check_ready(ready)?"login-submit-button":"login-submit-button"} id="login_button"
+        <div value="Log In" className="login-submit-button" id="login_button"
             onClick={()=>{
-                check_ready(ready)? dispatch(postLogIn(current))
-                :window.alert("Не все данные введены корректно");
+              dispatch(postLogIn(current))
             }}
         >Log In</div>
     )

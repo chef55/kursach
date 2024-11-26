@@ -370,6 +370,30 @@ body{
 /*--------------------Login Form-------------------------------*/
 
 
+.error-field{
+    font-size:1.5vmin;
+    color:#cb2f2f;
+    height: 1.5vmin;
+}
+
+.register-success-link{
+    font-size:1.75vmin;
+    margin: auto;
+    width:fit-content;
+    padding:0.5vmin;
+    border-radius: 0.5vmin;
+    background: #006c14;
+    margin-bottom: 1vmin;
+    cursor: pointer;
+}
+
+.register-success{
+    font-size:1.75vmin;
+    margin: auto;
+    color: #006c14;
+    margin-bottom: 1vmin;
+}
+
 .login-close{
     width: 99vw;
     height: 100vh;
@@ -411,10 +435,10 @@ body{
     background: #131417;
     color:white;
     font-size:2vmin;
-
 }
 
 .login-submit-button{
+    cursor:pointer;
     font-size:1.75vmin;
     margin: auto;
     margin-top: 1vmin;
@@ -425,3 +449,43 @@ body{
     margin-bottom: 1vmin;
 }
 
+
+/*------------------------------Create post-----------------------*/
+.create-post-wrapper{
+    color:white;
+    position: absolute;
+    position: fixed;
+    top:10vmin;
+    width:25vw;
+    left:35vw;
+    background: #202126;
+    border-radius: 1vmin;
+    font-size: 2vmin;
+    text-align: center;
+}
+
+.create-post-text{
+    display: block;
+    outline:none;
+    border: white 0.2vmin solid;
+    max-width: 18vw;
+    min-width: 18vw;
+    min-height: 9vmin;
+    max-height: 27vmin;
+    border-radius: 0.5vmin;
+    background: #131417;
+    color:white;
+    font-size:2vmin;
+    margin: auto;
+}
+
+.create-post-file{
+    display: block;
+    margin: auto;
+    width:18vw;
+    margin-top:1vmin;
+}
+
+.create-post-label{
+    margin-top: 1.5px;
+}

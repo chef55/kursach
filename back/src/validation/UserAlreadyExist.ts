@@ -24,7 +24,7 @@ export class UserAlreadyExistConstraint implements ValidatorConstraintInterface 
 }
 
 export function UserAlreadyExist(validationOptions?: ValidationOptions) {
-    console.log('validating')
+    //console.log('validating')
   return function (object: Object, propertyName: string) {
     registerDecorator({
       target: object.constructor,

@@ -2,14 +2,19 @@ import React from 'react';
 import TextInput from './TextInput'
 import {Link} from "react-router-dom";
 import RegisterButton from './RegisterButton';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { update } from '../../slices/render';
+import { dropReady} from '../../slices/register';
 
 function RegisterForm(props) {
   const dispatch=useDispatch();
+
   return (
     <>
-    <div className='login-close' onClick={()=>{dispatch(update({name:"register", value: false}))}}></div>
+    <div className='login-close' onClick={()=>{
+        dispatch(update({name:"register", value: false}))
+        dispatch(dropReady())
+        }}></div>
     <div className='login-form-outer-wrapper'>
         <form className='login-form'>
             <div className='login-form-row-wrapper'>

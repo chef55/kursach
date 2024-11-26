@@ -2,11 +2,11 @@ import axios from 'axios';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from "react-redux"
-import { update } from '../../slices/register';
+import { update, updateReady } from '../../slices/register';
 import {Link} from "react-router-dom";
 
 function TextInput(props) {
-  const ready=useSelector(state=>state.login.ready)
+  const ready=useSelector(state=>state.register.ready)
   const dispatch=useDispatch();
   return (
     <div>

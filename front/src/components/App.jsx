@@ -11,11 +11,10 @@ function App() {
   return (
     <div className="App">
       <Router>
+      <Header button_names={["Search", "Subscriptions"]}button_paths={[ '/','/' ]}/>
         <Routes>
           <Route path="/" element={<Main/>}/>
           <Route path="/profile" element={<Profile/>}/>
-          <Route path="/login" element={<LoginForm/>}/>
-          <Route path="/register" element={<RegisterForm/>}/>
         </Routes>
       </Router>
     </div>

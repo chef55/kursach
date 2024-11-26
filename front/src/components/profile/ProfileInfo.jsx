@@ -8,6 +8,7 @@ function ProfileInfo() {
             <div className='profile-info-name-about'>
                 <div className='profile-info-name'>chef</div>
                 <div className='profile-info-about'>jashdihasdifjhsakjfhijsahfkjshkjfhs</div>
+                <div className='profile-logout-button'>Log Out</div>
             </div>
         </div>
     </>

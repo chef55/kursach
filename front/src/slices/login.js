@@ -6,18 +6,19 @@ const initialState={
     username:'',
     password:''
   }, 
-    ready:{
-      username: "good",
-      password: "good"
-    }
+    ready:''
 }
 
-  export const postLogIn=createAsyncThunk('inout/fetchData',async(arg)=>{
-      const response = await axios.post('http://localhost:3001/auth',arg,{withCredentials:true})
-      console.log(response)
-      return response.data
+  export const postLogIn=createAsyncThunk('login/postLogin',async(arg,{rejectWithValue})=>{
+    try{
+      const res = await axios.post('http://localhost:3001/auth',arg,{withCredentials:true})
+      return res.data
     }
-  )
+    catch(error){
+      //console.log(error)
+      return rejectWithValue(error.status)
+    }
+  })
 
   export const logIn=createSlice({
     name: 'login',
@@ -28,18 +29,24 @@ const initialState={
       },
       updateReady:(state,action)=>{
         state.ready[action.payload.name]=action.payload.value;
+      },
+      dropReady:(state)=>{
+        state.ready=""
       }
     },
     extraReducers(builder) {
       builder
         .addCase(postLogIn.fulfilled, (state, action) => {
-          state.value.P = action.payload.P
-          state.value.T = action.payload.T
+          state.ready='good'
         })
         .addCase(postLogIn.rejected, (state, action) => {
+          //console.log(action.payload)
+          if(Math.floor(action.payload/100)===4){
+            state.ready="Incorrect username or password"
+          }
         })
     }
   })
 
-  export const { update,updateReady } = logIn.actions;
+  export const { update,updateReady,dropReady } = logIn.actions;
   export default logIn.reducer;

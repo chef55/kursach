@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 
 
@@ -7,15 +7,12 @@ export class AuthService {
   constructor(
     private userService:UserService){}
 
-  getHello(): string {
-    return 'Hello World!';
-  }
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.userService.findUserByName(username);
     if (user && user.password === pass) {
       const { password, ...result } = user;
       return result;
     }
-    return null;
+    return null
   }
 }

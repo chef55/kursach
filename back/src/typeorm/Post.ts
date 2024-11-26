@@ -15,16 +15,10 @@ export class PostTable{
     description='';
 
     @Column('varchar')
-    image_name='';
+    image_id='';
 
     @Column('varchar')
-    encoding='';
-
-    @Column('varchar')
-    mimetype='';
-
-    @Column('bytea')
-    image;
+    image_name=''
 
     @ManyToOne(()=>UserTable, (user)=>user.posts)
     user: UserTable

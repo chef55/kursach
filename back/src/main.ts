@@ -6,6 +6,7 @@ import { TypeormStore } from 'connect-typeorm';
 import { SessionTable } from './typeorm';
 import { AppDataSource } from './typeorm/DataSource';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,8 +16,9 @@ async function bootstrap() {
   app.enableCors({
     origin:"http://localhost:3000",
     credentials: true,
-    methods: ['GET','POST']
+    //methods: ['GET','POST']
   });
+  app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe({exceptionFactory: (errors) => new BadRequestException(errors)}));
   app.use(
     session({
@@ -25,7 +27,7 @@ async function bootstrap() {
       resave:false,
       saveUninitialized:false,
       cookie:{
-        maxAge:60000
+        maxAge:600000
       },
       store: new TypeormStore({cleanupLimit:10}).connect(sessionRepo)
     }),

@@ -2,28 +2,31 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux"
 import {postRegister} from "../../slices/register.js"
+import { update } from '../../slices/render';
 
 function RegisterButton(props) {
     const dispatch=useDispatch();
-    const current=useSelector(state=>state.login.value)
-    const ready=useSelector(state=>state.login.ready)
-    const check_ready=(ready)=>{
-      let out=true
-      Object.entries(ready).map((val)=>{
-        if(val[1]!="good") {
-          out=false
-          return
-        }
-      })
-      return out
+    const current=useSelector(state=>state.register.value)
+    const ready=useSelector(state=>state.register.ready)
+    const check_ready=()=>{
+      return ready.email==="good"&&ready.password==="good"&&ready.username==="good"
     }
     return(
-        <div className={check_ready(ready)?"login-submit-button":"login-submit-button"} id="register_button"
-            onClick={()=>{
-                check_ready(ready)? dispatch(postRegister(current))
-                :window.alert("Не все данные введены корректно");
-            }}
-        >Create Account</div>
+      <>
+        {check_ready()?
+        <>
+          <div className='register-success'>Success!</div>
+          <div className='register-success-link' onClick={()=>{
+              dispatch(update({name:"register", value: false}))
+              dispatch(update({name:"login", value: true}))
+          }}>Continue to Log In</div>
+        </>
+          :<div className="login-submit-button" id="register_button"
+          onClick={()=>{
+              dispatch(postRegister(current)) 
+          }}
+      >Create Account</div>}
+      </>
     )
 }
 

@@ -3,6 +3,9 @@ import { PostService } from './post.service';
 import { CreatePostDto } from '../dtos/CreatePost.dto';
 import { AuthenticatedGuard } from 'src/auth/local-auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { Session } from '@nestjs/common'
+import { UserService } from 'src/user/user.service';
 
 @Controller('post')
 export class PostController {
@@ -21,21 +24,22 @@ export class PostController {
   
   //@UseGuards(AuthenticatedGuard)
   @Post('create')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileInterceptor('file',{dest:'../uploads'}))
   createPost(@UploadedFile(
-    new ParseFilePipeBuilder()
+      new ParseFilePipeBuilder()
       .addFileTypeValidator({
         fileType: 'image',
       })
-      .addMaxSizeValidator({
-        maxSize: 100000
-      })
+      //.addMaxSizeValidator({
+      //  maxSize: 100000
+      //})
       .build({
-        errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY
-      }),)
+        errorHttpStatusCode: HttpStatus.BAD_REQUEST,
+      }),
+    )
       file: Express.Multer.File,
-      @Body() createPostDto:CreatePostDto){
-        console.log(createPostDto)
-        return this.postService.createPost(file, createPostDto)
-    }
+      @Body() createPostDto:CreatePostDto, @Session() session:Record<string,any>){
+        //console.log(session)
+        return this.postService.createPost(file, createPostDto, session)
+      }
 }

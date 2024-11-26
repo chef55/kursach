@@ -1,17 +1,31 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from 'axios'
 import {root} from "../index"
+//import FormData from 'form-data'
 const initialState={
     ready:{
-      description: true,
-      tags: true
+      description:'',
+      file:'',
     }
 }
 
-  export const postPost=createAsyncThunk('inout/fetchData',async(arg)=>{
-      const response = await axios.post('http://localhost:3001/auth',arg,{withCredentials:true})
-      console.log(response)
-      return response.data
+  export const postPost=createAsyncThunk('post/postPost',async(arg, {rejectWithValue})=>{
+    const formData = new FormData()
+    formData.append('description', arg.description)
+    formData.append('file', arg.file[0])
+    try{
+      const res = await axios.post('http://localhost:3001/post/create',formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials:true,
+      })
+      return res.data
+    }
+    catch(error){
+      //console.log(error)
+      return rejectWithValue(error)
+    }
     }
   )
 
@@ -25,14 +39,14 @@ const initialState={
     },
     extraReducers(builder) {
       builder
-        .addCase(postLogIn.fulfilled, (state, action) => {
-          state.value.P = action.payload.P
-          state.value.T = action.payload.T
+        .addCase(postPost.fulfilled, (state, action) => {
+          //console.log(action.payload)
         })
-        .addCase(postLogIn.rejected, (state, action) => {
+        .addCase(postPost.rejected, (state, action) => {
+          //console.log(action.payload)
         })
     }
   })
 
-  export const { update,updateReady } = postPost.actions;
-  export default postPost.reducer;
+  export const { updateReady } = post.actions;
+  export default post.reducer;

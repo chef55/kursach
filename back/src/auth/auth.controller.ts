@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Session, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LogInDto } from '../dtos/LogIn.dto';
 import { AuthenticatedGuard, LocalAuthGuard } from './local-auth.guard';
@@ -7,14 +7,11 @@ import { AuthenticatedGuard, LocalAuthGuard } from './local-auth.guard';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
- //@UseGuards(AuthenticatedGuard)
-  //@Get()
-  //getUser(): string {
-  //  console.log('chef')
-  //  return 'idi nahui'
-  //}
-
-  
+  @UseGuards(AuthenticatedGuard)
+  @Get()
+  getAuthenticated(@Session() session: Record<string, any>){
+    return session.passport
+  }
 
   @UseGuards(LocalAuthGuard)
   @Post('')
