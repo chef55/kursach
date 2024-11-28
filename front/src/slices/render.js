@@ -5,6 +5,12 @@ const initialState={
     value:{
     login:false,
     register: false,
+    post:{
+      render:false,
+      key:0,
+      image:null,
+      description:null
+    }
   }, 
 }
 
@@ -15,8 +21,14 @@ const initialState={
       update: (state,action)=>{
         state.value[action.payload.name]=action.payload.value;
       },
+      updatePost:(state,action)=>{
+        state.value.post.description=action.payload.description
+        state.value.post.image=action.payload.image
+        state.value.post.render=action.payload.render
+        state.value.post.key=action.payload.key
+      }
     },
   })
 
-  export const { update} = renderWindow.actions;
+  export const { update,updatePost} = renderWindow.actions;
   export default renderWindow.reducer;

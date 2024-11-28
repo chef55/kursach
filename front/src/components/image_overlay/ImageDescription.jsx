@@ -9,7 +9,7 @@ function ImageDescription(props) {
         <LikeButton/>
       </div>
       <div className='image-overlay-description-about'>
-        descripton descripton descripton descripton descripton descripton descripton descripton descripton descripton descripton descripton descripton descripton descripton descripton
+        {props.desc}
       </div>
     </div>
   );

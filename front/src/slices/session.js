@@ -9,7 +9,7 @@ const initialState={
   }, 
 }
 
-  export const getSession=createAsyncThunk('login/postLogin',async(arg,{rejectWithValue})=>{
+  export const getSession=createAsyncThunk('session/getSession',async(arg,{rejectWithValue})=>{
       const res = await axios.get('http://localhost:3001/auth',{withCredentials:true})
       return res.data.user
   })
