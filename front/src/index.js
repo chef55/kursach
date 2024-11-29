@@ -9,6 +9,7 @@ import registerReducer from "./slices/register.js"
 import renderReducer from "./slices/render.js"
 import sessionReducer from "./slices/session.js"
 import postReducer from "./slices/post.js"
+import profileReducer from "./slices/profile.js"
 import {Provider} from "react-redux"
 
 
@@ -19,6 +20,7 @@ const store=configureStore({
     render: renderReducer,
     session: sessionReducer,
     post:postReducer,
+    profile:profileReducer
   },
 })
 

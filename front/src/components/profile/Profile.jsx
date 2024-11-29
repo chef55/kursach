@@ -4,9 +4,14 @@ import React from 'react';
 import ProfileBody from './ProfileBody';
 import { useDispatch } from 'react-redux';
 import { getSession } from '../../slices/session';
+import { useParams } from 'react-router-dom';
+import { getProfileData, getProfileImage } from '../../slices/profile';
 function Profile() {
   const dispatch=useDispatch();
-  dispatch(getSession())
+  const props=useParams()
+    dispatch(getSession())
+    dispatch(getProfileData(props.id))
+  //dispatch(getProfileImage())
   return (
     <>
       <ProfileBody/>

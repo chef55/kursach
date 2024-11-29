@@ -51,7 +51,7 @@ export class PostController {
     )
       file: Express.Multer.File,
       @Body() createPostDto:CreatePostDto, @Session() session:Record<string,any>){
-        console.log(Date.now())
+        //console.log(Date.now())
         return this.postService.createPost(file, createPostDto, session)
       }
 }

@@ -14,7 +14,7 @@ function App() {
       <Header button_names={["Search", "Subscriptions"]}button_paths={[ '/','/' ]}/>
         <Routes>
           <Route path="/" element={<Main/>}/>
-          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/profile/:id" element={<Profile/>}/>
         </Routes>
       </Router>
     </div>

@@ -47,6 +47,7 @@ const initialState={
   export const getFeed=createAsyncThunk('post/getFeed',async(arg, {rejectWithValue})=>{
     try{
       const res = await axios.get('http://localhost:3001/post/feed')
+      console.log(res.data)
       return res.data
     }
     catch(error){
@@ -78,6 +79,7 @@ const initialState={
           state.files.description=action.payload.description
           state.files.post_id=action.payload.ids
           state.files.user_id=action.payload.users
+
         })
         .addCase(getFeed.rejected, (state, action) => {
           //console.log(action.payload)

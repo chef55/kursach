@@ -16,4 +16,7 @@ export class CreateUserDto{
     @MinLength(5,{message:"Password too short"})
     @IsNotEmpty({message:"Password cannot be empty"})
     password:string;
+
+    @IsNotEmpty()
+    image_id="default_profile.png"
 }

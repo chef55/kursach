@@ -6,7 +6,8 @@ function ImageOverlay(props) {
   const post= useSelector(state=>state.post.files)
   const render = useSelector(state=>state.render.value.post)
   const dispatch=useDispatch()
-  console.log(render.description)
+  //console.log(post.description[render.key])
+  //console.log(render.description)
   return (
     <>
     <div className="image-overlay-shadow"></div>
@@ -15,7 +16,7 @@ function ImageOverlay(props) {
             <div className='image-overlay-image-wrapper'>
                 <img src={post.file_href[render.key]} className='image-overlay-image'></img>
             </div>
-            <ImageDescription desc={render.description}/>
+            <ImageDescription post_id={post.post_id[render.key]} desc={post.description[render.key]} user_id={post.user_id[render.key]}/>
         </div>
         <ImageComments/>
     </div>

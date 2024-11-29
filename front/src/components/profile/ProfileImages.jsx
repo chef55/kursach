@@ -5,7 +5,7 @@ function ProfileImages() {
   return (
     <div className='profile-images'>
         <div className='profile-images-text'>User's saved images</div>
-        <ImageLine/>
+        
     </div>
   );
 }

@@ -20,6 +20,9 @@ export class UserTable{
     @Column()
     password:string;
 
+    @Column()
+    image_id:string;
+
     @OneToMany(()=>PostTable, (post)=>post.user)
     posts: PostTable[]
 
