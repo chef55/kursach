@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postPost, update } from '../../slices/post';
+import { postPost } from '../../slices/post';
+import { update } from '../../slices/render';
 
 function CreatePost(props) {
   const dispatch=useDispatch()
@@ -8,6 +9,7 @@ function CreatePost(props) {
   //var file = ''
   return (
     <>
+    <div className='login-close' onClick={()=>{dispatch(update({name:'create_post', value:false}))}}></div>
       <form className='create-post-wrapper' encType='multipart/form-data' onSubmit={(event)=>{
           event.preventDefault()
           //const text=document.getElementById("create-post-text").value
@@ -17,10 +19,10 @@ function CreatePost(props) {
           dispatch(postPost({file: file, description: text}))
       }}>
           <div className='create-post-label'>Description</div>
-          {<textarea type="text" className='create-post-text' id="create-post-text"></textarea>
-          }
+          <textarea type="text" className='create-post-text' id="create-post-text"></textarea>
+          
         <input type="file" accept="image/*" className='create-post-file' id="create-post-file"></input>
-        <button className='login-submit-button'>Create Post</button>
+        <button className='login-submit-button' type="submit">Create Post</button>
       </form>
     </>
   );

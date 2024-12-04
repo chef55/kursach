@@ -5,6 +5,7 @@ body{
 }
 
 .loader {
+    z-index: 0;
     display: inline-block;
     margin:auto;
     width: 48px;
@@ -45,7 +46,7 @@ body{
     text-decoration: none;
     margin-left: 1vmin;
     transition:0.1s;
-
+    cursor: pointer;
 }
 
 
@@ -75,6 +76,7 @@ body{
     border-bottom-left-radius: 1vmin;
     border-bottom-right-radius: 1vmin;
     background: rgba(39, 40, 45, 0.5);
+    z-index: 1;
 }
 
 .header-profile-button-outer-wrapper{
@@ -99,6 +101,7 @@ body{
     border-radius: 50%;
     width: 5vmin;
     height: 5vmin;
+    object-fit: cover;
 }
 
 .header-profile-button-name{
@@ -133,6 +136,7 @@ body{
 
 .body-main-image-line{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .small-image{
@@ -190,6 +194,52 @@ body{
     font-size: 3vmin;
 }
 
+.profile-small-image{
+    width:13vw;
+    height: 13vw;
+    object-fit: cover;
+    border-radius: 15px;
+    margin:1vw;
+    background-color: #3b3d47;
+}
+
+.profile-logout-button{
+    font-size:2vmin;
+    color:#cb2f2f;
+    cursor: pointer;
+    display:inline;
+}
+
+.profile-submit-button{
+    cursor:pointer;
+    font-size:1.75vmin;
+    margin:1vmin;
+    margin-left:0;
+    margin-right: 2vmin;;
+    width:fit-content;
+    padding:0.5vmin;
+    border-radius: 0.5vmin;
+    background: #474953;
+    outline: none;
+    border:none;
+    color:white;
+}
+
+.new-image-file{
+    display: none;
+}
+
+.new-image-file-label{
+    cursor:pointer;
+    font-size:1.75vmin;
+    margin:1vmin;
+    margin-left:0;
+    margin-right: 2vmin;;
+    width:fit-content;
+    padding:0.5vmin;
+    border-radius: 0.5vmin;
+    background: #474953;
+}
 /*Image overlay------------------------------------*/
 
 .image-overlay-shadow{
@@ -199,8 +249,9 @@ body{
     position: fixed;
     top:0;
 }
-
+ 
 .image-overlay{
+    z-index: 1;
     position: fixed;
     display: flex;
     top:10vmin;
@@ -222,6 +273,10 @@ body{
     height: 55vmin;
     object-fit: contain;
     border-top-left-radius: 1vmin;
+}
+
+.edit_avatar_button{
+
 }
 
 /*-----------------------description-----------------------*/
@@ -304,8 +359,19 @@ body{
 }
 
 .image-overlay-comments-single-profile-date{
+    position: relative;
     display: flex;
 }
+
+.image-overlay-comments-single-date{
+    display: grid;
+    align-items: center;
+    height:100%;
+    position: absolute;
+    font-size: 1.3vmin;
+    right:0;
+}
+
 
 .image-overlay-comment-profile{
     color:aliceblue;
@@ -324,11 +390,12 @@ body{
 
 .image-overlay-comment-profile-name{
     height: 3vmin;
-    margin-left:1vmin;
     margin-right:1vmin;
     display: grid;
     line-height: 3vmin;
     align-items: center;
+    font-size:2.2vmin;
+    color:rgb(168, 255, 226);
 }
 
 .image-overlay-comment-like-wrapper{
@@ -370,14 +437,30 @@ body{
 }
 
 .image-overlay-comments-input{
-    height:20vmin;
-    width:17.5vw;
+    display:flex;
+    min-height:20vmin;
+    max-height:20vmin;
+    max-width:17.5vw;
+    border-top: #131417 0.25vmin solid;
+}
+
+.image-overlay-comment-send{
+    margin-left:1vmin;
+    margin-right:1vmin;
+    width: 3vmin;
+    height: 3vmin;
+    object-fit:fill;
+}
+
+.image-overlay-comment-send-wrapper{
+    display: grid;
+    align-items: center;
 }
 
 .image-overlay-comments-input-input{
     display: block;
-    height:19.5vmin;
-    width:17.5vw;
+    max-height:19.7vmin;
+    min-height:19.7vmin;
     background:#292a30;
     color:white;
     outline: none;
@@ -385,7 +468,7 @@ body{
     font-size: 2vmin;
     padding:0;
     text-align: center;
-    border-top: #131417 0.25vmin solid;
+    resize: none;
 }
 
 .image-overlay-comments-input-input:focus{
@@ -423,13 +506,17 @@ body{
 }
 
 .login-close{
-    width: 99vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     position: absolute;
+    top:0;
+    left:0;
     backdrop-filter: blur(6px);
+    z-index: 0;
 }
 
 .login-form-outer-wrapper{
+    z-index: 1;
     position: fixed;
     top:10vmin;
     width:25vw;
@@ -475,11 +562,14 @@ body{
     border-radius: 0.5vmin;
     background: #474953;
     margin-bottom: 1vmin;
+    border:none;
+    color:white;
 }
 
 
 /*------------------------------Create post-----------------------*/
 .create-post-wrapper{
+    z-index: 1;
     color:white;
     position: absolute;
     position: fixed;

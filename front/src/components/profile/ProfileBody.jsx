@@ -8,7 +8,7 @@ function ProfileBody(props) {
   return (
     <div className='profile-body'>
       <ProfileInfo image_id={state.image_id}/>
-        <ProfileImages/>
+      <ProfileImages/>
     </div>
   );
 }

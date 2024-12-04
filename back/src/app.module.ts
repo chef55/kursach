@@ -5,9 +5,11 @@ import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
 import entities from './typeorm';
 import { PostModule } from './post/post.module';
+import { LikeModule } from './likes/like.module';
+import { CommentModule } from './comments/comment.module';
 
 @Module({
-  imports: [UserModule, AuthModule, PostModule,
+  imports: [UserModule, AuthModule, PostModule, LikeModule, CommentModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',

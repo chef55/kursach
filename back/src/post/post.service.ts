@@ -2,7 +2,7 @@ import { Injectable, StreamableFile } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, IntegerType, Repository } from 'typeorm';
 import { CreateUserDto } from '../dtos/CreateUser.dto';
-import { PostTable } from 'src/typeorm';
+import { PostTable, UserTable } from 'src/typeorm';
 import { CreatePostDto } from 'src/dtos/CreatePost.dto';
 import { diskStorage } from 'multer';
 import { UserService } from 'src/user/user.service';
@@ -21,6 +21,8 @@ export class PostService {
     const reply = { description: post.description }
     return reply
   }
+
+
   
   async getPostImage(id:string){
     const post= await this.postRepository.findOneBy({id})
@@ -37,7 +39,24 @@ export class PostService {
     const users=[]
     const desc = []
     arr.map((e)=>{
-      console.log(e)
+      //console.log(e)
+      imgs.push(e.image_id)
+      ids.push(e.id)
+      users.push(e.user.id)
+      desc.push(e.description)
+    })
+    //console.log(arr)
+    return {images:imgs,ids:ids,users:users,description:desc}
+  }
+
+  async getUserPosts(id){
+    const arr = await AppDataSource.getRepository(PostTable).createQueryBuilder('post').leftJoinAndSelect('post.user','user').where('user.id=:id',{id:id}).getMany()
+    const imgs=[]
+    const ids=[]
+    const users=[]
+    const desc = []
+    arr.map((e)=>{
+      //console.log(e)
       imgs.push(e.image_id)
       ids.push(e.id)
       users.push(e.user.id)
@@ -48,11 +67,11 @@ export class PostService {
 
   async createPost(file: Express.Multer.File, createPostDto:CreatePostDto, session: Record<string,any>){
     //console.log(session.passport)
-    const user = await this.userService.getUser(session.passport.user.id)
+    const user = await AppDataSource.getRepository(UserTable).findOneBy({id:session.passport.user.id})
     createPostDto.image_id= file.filename
     createPostDto.image_name= file.originalname
     createPostDto.user = user.id
-    const newPost = this.postRepository.create(createPostDto)
+    const newPost = await this.postRepository.create(createPostDto)
     return this.postRepository.save(newPost)
   }
 }

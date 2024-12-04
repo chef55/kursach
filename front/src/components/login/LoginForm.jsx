@@ -25,8 +25,13 @@ function LoginForm(props) {
             <div className='error-field'>{ready=="good"?"":ready}</div>
             <LoginButton/>
         </form>
-        <div  className ='new-account-button' onClick={()=>{dispatch(update({name:"register", value: true}));dispatch(update({name:"login", value: false}))}}>Create a new account</div>
-    </div>
+        <div  className ='new-account-button' onClick={()=>{
+          dispatch(update({name:"login",value:false}))
+          dispatch(update({name:"post",value:true}))
+          dispatch(update({name:'register', value:false}))
+          dispatch(update({name:'create_post', value:false}))}
+        }>Create a new account</div>
+      </div>
     </>
   );
 }

@@ -20,8 +20,8 @@ export class UserTable{
     @Column()
     password:string;
 
-    @Column()
-    image_id:string;
+    @Column({default:true})
+    image_id:string = 'default_profile.webp';
 
     @OneToMany(()=>PostTable, (post)=>post.user)
     posts: PostTable[]

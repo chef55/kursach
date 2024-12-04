@@ -11,7 +11,6 @@ import CreatePost from '../create_post/CreatePost';
 import { getFeed } from '../../slices/post';
 function Main() {
   const dispatch=useDispatch();
-  //const ids = useSelector(state=>state.post.files.file_id)
   dispatch(getSession())
   dispatch(getFeed(16))
   return (

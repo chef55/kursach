@@ -5,10 +5,9 @@ const initialState={
     value:{
     login:false,
     register: false,
-    post:{
-      render:false,
-      key:0,
-    }
+    post:false,
+    create_post:false,
+    upload_button: false,
   }, 
 }
 
@@ -17,12 +16,15 @@ const initialState={
     initialState,
     reducers:{
       update: (state,action)=>{
+        //console.log(action.payload)
         state.value[action.payload.name]=action.payload.value;
       },
       updatePost:(state,action)=>{
         state.value.post.key=action.payload.key
         state.value.post.render=action.payload.render
-      }
+        state.value.post.id=action.payload.id
+        //console.log(action.payload)
+      },
     },
   })
 

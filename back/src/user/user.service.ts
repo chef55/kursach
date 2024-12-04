@@ -19,7 +19,7 @@ export class UserService {
 
   async newProfileImage(file: Express.Multer.File, session: Record<string,any>){
     //const user = await this.userRepository.findOneBy({id:session.passport.user.id})
-    const up = await AppDataSource.createQueryBuilder().update(UserTable).set({image_id:file.fieldname}).where("id=:id",{id:session.passport.user.id}).execute()
+    const up = await AppDataSource.createQueryBuilder().update(UserTable).set({image_id:file.filename}).where("id=:id",{id:session.passport.user.id}).execute()
     return file.fieldname
   }
 

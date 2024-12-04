@@ -8,6 +8,8 @@ import RegisterForm from '../register/RegisterForm';
 import { useDispatch, useSelector } from "react-redux"
 import { getSession } from '../../slices/session';
 import ImageOverlay from '../image_overlay/ImageOverlay';
+import CreatePost from '../create_post/CreatePost';
+import NewPost from './NewPost';
 function Header(props) {
   const render=useSelector(state=>state.render.value)
   const session=useSelector(state=>state.session.value)
@@ -21,13 +23,14 @@ function Header(props) {
           {props.button_names.map((val,i)=>
               <HeaderButton key={i} name={val} path={props.button_paths[i]}/>
           )}
+        <NewPost/>
       </div>
       {session.auth?<HeaderProfile username={session.username}/>:<LoginButton/>}
     </div>
     {render.login?<LoginForm/>:<></>}
     {render.register?<RegisterForm/>:<></>}
-    {render.post.render?<ImageOverlay/>:<></>}
-
+    {render.post?<ImageOverlay/>:<></>}
+    {render.create_post?<CreatePost/>:<></>}
     </>
   );
 }

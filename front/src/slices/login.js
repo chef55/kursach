@@ -38,6 +38,7 @@ const initialState={
       builder
         .addCase(postLogIn.fulfilled, (state, action) => {
           state.ready='good'
+          window.location.reload();
         })
         .addCase(postLogIn.rejected, (state, action) => {
           //console.log(action.payload)

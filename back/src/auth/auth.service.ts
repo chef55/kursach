@@ -1,4 +1,6 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { SessionTable } from 'src/typeorm';
+import { AppDataSource } from 'src/typeorm/DataSource';
 import { UserService } from 'src/user/user.service';
 
 
@@ -14,5 +16,9 @@ export class AuthService {
       return result;
     }
     return null
+  }
+
+  async deleteSession(session:string){
+    const del = await AppDataSource.createQueryBuilder().delete().from(SessionTable).where('id=:id',{id:session}).execute()
   }
 }

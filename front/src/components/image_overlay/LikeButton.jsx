@@ -1,10 +1,20 @@
 import React from 'react';
 import ProfileButton from './ProfileButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { postLike } from '../../slices/post';
+import heart_filled from "./heart-filled.png"
+import heart_hollow from "./heart-hollow.png"
 function LikeButton(props) {
+  const store = useSelector(store=>store.post.current)
+  const dispatch=useDispatch()
   return (
     <div className='image-overlay-description-like-wrapper'>
-        <img src="https://e7.pngegg.com/pngimages/742/937/png-clipart-heart-emoji-emoticon-symbol-broken-heart-love-heart.png"className='image-overlay-description-like-button'></img>
-        <div className='image-overlay-description-like-count'>1300</div>
+        <img src={store.liked?heart_filled:heart_hollow}className='image-overlay-description-like-button' onClick={
+          ()=>{
+            dispatch(postLike({post:store.post_id}))
+          }
+        }></img>
+        <div className='image-overlay-description-like-count'>{store.likes}</div>
     </div>
   );
 }

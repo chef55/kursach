@@ -4,16 +4,23 @@ import {root} from "../index"
 const initialState={
     value:{
     username:'',
-    image_id:'default_profile.png',
-    image_href:null
+    image_id:'',
+    image_href:''
   }, 
+    ready:false,
 }
+
+
 
 export const getProfileData=createAsyncThunk('profile/getProfileData',async(arg,{rejectWithValue})=>{
     try{
+      //console.log(arg)
       const res = await axios.get('http://localhost:3001/user/'+arg,{withCredentials:true})
-      //console.log(res.data)
-      return res.data
+      ///console.log(res)
+      const img = await axios.get('http://localhost:3001/user/image/'+res.data.image_id,{responseType:'blob'})
+      const blob = new Blob([img.data], {type: img.headers['content-type'] })
+      const href = URL.createObjectURL(blob)
+      return {data: res.data, img: href}
     }
     catch(errors){
       const messages={email:{},username:{},password:{}}
@@ -24,9 +31,10 @@ export const getProfileData=createAsyncThunk('profile/getProfileData',async(arg,
     }
   })
 
-  export const getProfileImage=createAsyncThunk('profile/getProfileImage',async(arg,{rejectWithValue})=>{
+  export const getProfileImage=createAsyncThunk('profile/getProfileImage',async(arg,{rejectWithValue,getState})=>{
     try{
-        const res = await axios.get('http://localhost:3001/user/image/'+arg,{responseType:'blob'})
+        const state=getState()
+        const res = await axios.get('http://localhost:3001/user/image/'+arg,{responseType:'blob',withCredentials:true})
         const blob = new Blob([res.data], {type: 'image/jpeg' })
         const href = URL.createObjectURL(blob)
         return href
@@ -38,9 +46,9 @@ export const getProfileData=createAsyncThunk('profile/getProfileData',async(arg,
 
 
   export const postProfileImage=createAsyncThunk('profile/postProfileImage',async(arg,{rejectWithValue})=>{
-    const formData = new FormData()
-    formData.append('file', arg.file[0])
     try{
+      const formData = await new FormData()
+      await formData.append('file', arg[0])
       const res = await axios.post('http://localhost:3001/user/image',formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -63,14 +71,17 @@ export const getProfileData=createAsyncThunk('profile/getProfileData',async(arg,
         state.value[action.payload.name]=action.payload.value;
       },
       updateReady:(state,action)=>{
-        state.ready[action.payload.name]=action.payload.value;
+        state.ready=action.payload.value
       },
+
     },
     extraReducers(builder) {
       builder
         .addCase(getProfileData.fulfilled, (state, action) => {
-            state.value.username=action.payload.username
-            state.value.image_id=action.payload.image_id
+          //console.log(action.payload)
+            state.value.username=action.payload.data.username
+            state.value.image_id=action.payload.data.image_id
+            state.value.image_href=action.payload.img
         })
         .addCase(getProfileData.rejected, (state, action) => {
 
@@ -82,7 +93,7 @@ export const getProfileData=createAsyncThunk('profile/getProfileData',async(arg,
             
         })
         .addCase(postProfileImage.fulfilled, (state, action) => {
-            
+            state.ready=true
         })
         .addCase(postProfileImage.rejected, (state, action) => {
             

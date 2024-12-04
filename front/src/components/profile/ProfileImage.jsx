@@ -7,8 +7,8 @@ function ProfileImage(props) {
     const state=useSelector(state=>state.profile.value)
   return (
     <div className="image-wrapper">
-      {state.image_href!=null?<img src={state.image_href} className='small-image'/>
-      :<div className='small-image loader-border'>
+      {state.image_href!=''?<img src={state.image_href} className='profile-small-image'/>
+      :<div className='profile-small-image loader-border'>
         <span className="loader"></span>
       </div>
       }

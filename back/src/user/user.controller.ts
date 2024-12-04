@@ -14,23 +14,18 @@ export class UserController {
 
   @Get(':id')
   getUser(@Param() params:any) {
-    console.log(params.id)
+    //console.log(params.id)
     return this.userService.getUser(params.id);
   }
 
-  @Get('profile/:id')
+  @Get('image/:id')
   getProfile(@Param() params:any, @Res() res) {
     return of(res.sendFile(join(process.cwd(),'../uploads',params.id)))
   }
 
   @UseGuards(AuthenticatedGuard)
   @Post('image')
-  @UseInterceptors(FileInterceptor('file',{storage:diskStorage({
-    destination: '../uploads',
-    filename: (req,file,cb)=>{
-      cb(null, Date.now().toString()+"."+file.mimetype.split('/')[1].toString())
-    }
-  })},/*{dest:'../uploads'}*/))
+  @UseInterceptors(FileInterceptor('file'))
   createPost(@UploadedFile(
       new ParseFilePipeBuilder()
       .addFileTypeValidator({
@@ -46,12 +41,13 @@ export class UserController {
       file: Express.Multer.File,
       @Session() session:Record<string,any>
     ){
+      console.log(file.originalname)
         return this.userService.newProfileImage(file,session)
-      }
+    }
   
   @Post('create')
   createUser(@Body() createUserDto:CreateUserDto){
-    
+    createUserDto.image_id='default_profile.webp'
     return this.userService.createUser(createUserDto)
   }
 

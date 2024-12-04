@@ -17,6 +17,5 @@ export class CreateUserDto{
     @IsNotEmpty({message:"Password cannot be empty"})
     password:string;
 
-    @IsNotEmpty()
-    image_id="default_profile.png"
+    image_id="default_profile.webp"
 }

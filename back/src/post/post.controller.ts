@@ -28,6 +28,11 @@ export class PostController {
   getFeed(@Param() params:any){
     return this.postService.getFeed(params.amount)
   }
+
+  @Get('user/:id')
+  getUserImages(@Param() params:any) {
+    return this.postService.getUserPosts(params.id)
+  }
   
   //@UseGuards(AuthenticatedGuard)
   @Post('create')

@@ -15,5 +15,5 @@ export class LikeTable{
     user: UserTable
 
     @ManyToOne(()=>PostTable, (post)=>post.likes)
-    post: UserTable
+    post: PostTable
 }

@@ -6,8 +6,10 @@ function LoginButton(props) {
   const dispatch=useDispatch();
   return (
     <div className="header-button header-login-button" onClick={()=>{
-      dispatch(update({name:"login", value: true}))
-      dispatch(update({name:"register", value: false}))
+      dispatch(update({name:"login",value:true}))
+      dispatch(update({name:"post",value:false}))
+      dispatch(update({name:'register', value:false}))
+      dispatch(update({name:'create_post', value:false}))
     }}>
         {'Log In'}
     </div>

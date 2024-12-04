@@ -19,4 +19,7 @@ export class CommentTable{
 
     @Column()
     text:string;
+
+    @Column()
+    date:string
 }

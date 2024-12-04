@@ -13,6 +13,11 @@ export class AuthController {
     return session.passport
   }
 
+  @Get('delete')
+  deleteSession(@Session() session:Record<string,any>){
+    return this.authService.deleteSession(session.id)
+  }
+
   @UseGuards(LocalAuthGuard)
   @Post('')
   authenticateUser(@Body() logInDto:LogInDto){
