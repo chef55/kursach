@@ -42,7 +42,7 @@ const initialState={
             //console.log(action.error)
         })
         .addCase(deleteSession.fulfilled, (state, action) => {
-          window.location.reload();
+          window.location="/"
         })
         .addCase(deleteSession.rejected, (state, action) => {
           

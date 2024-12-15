@@ -7,7 +7,7 @@ function ProfileImages() {
   const user_ids = useSelector(state=>state.post.files.user_id)
   return (
     <div className='profile-images'>
-        <div className='profile-images-text'>User's saved images</div>
+        <div className='profile-images-text'>User's posts</div>
         <ImageLine ids={ids} user_ids={user_ids}/>
     </div>
   );

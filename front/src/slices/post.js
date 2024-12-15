@@ -38,6 +38,7 @@ const initialState={
         },
         withCredentials:true,
       })
+      window.location="/profile/"+arg.user
       return res.data
     }
     catch(error){
@@ -68,6 +69,17 @@ const initialState={
   export const getFeed=createAsyncThunk('post/getFeed',async(arg, {rejectWithValue})=>{
     try{
       const res = await axios.get('http://localhost:3001/post/feed',{withCredentials:true})
+      return res.data
+    }
+    catch(error){
+      return rejectWithValue(error)
+    }
+    }
+  )
+
+  export const getUserLikes=createAsyncThunk('post/getUserLikes',async(arg, {rejectWithValue})=>{
+    try{
+      const res = await axios.get('http://localhost:3001/like/liked',{withCredentials:true})
       return res.data
     }
     catch(error){
@@ -149,6 +161,30 @@ const initialState={
     }
   )
 
+  export const deleteComment=createAsyncThunk('post/deleteComment',async(arg, {rejectWithValue})=>{
+    try{
+      const del = await axios.get('http://localhost:3001/comment/delete/'+arg.comment_id,{withCredentials:true})
+      const res = await axios.get('http://localhost:3001/comment/'+arg.post_id,{withCredentials:true})
+      return res.data
+    }
+    catch(error){
+      return rejectWithValue(error)
+    }
+    }
+  )
+
+  export const deletePost=createAsyncThunk('post/deletePost',async(arg, {rejectWithValue})=>{
+    try{
+      const res = await axios.get('http://localhost:3001/post/delete/'+arg,{withCredentials:true})
+      //const res = await axios.get('http://localhost:3001/comment/'+arg.post_id,{withCredentials:true})
+      return res.data
+    }
+    catch(error){
+      return rejectWithValue(error)
+    }
+    }
+  )
+
   export const getLiked=createAsyncThunk('post/getLiked',async(arg, {rejectWithValue})=>{
     try{
       const res = await axios.get('http://localhost:3001/like/liked/'+arg,{withCredentials:true})
@@ -199,12 +235,23 @@ const initialState={
         state.current.username=state.files.username[action.payload]
         state.current.user_image=state.files.user_image[action.payload]
       },
+      dropPosts: (state,action)=>{
+        state.files.sent=[]
+        state.files.user_sent=[]
+        state.files.post_id=[]
+        state.files.user_id=[]
+        state.files.description= []
+        state.files.file_id= []
+        state.files.file_href=[]
+        state.files.likes=[]
+        state.files.username=[]
+        state.files.user_image=[]
+      }
     },
     extraReducers(builder) {
-
+      reducers:
       builder
         .addCase(postPost.fulfilled, (state, action) => {
-          state.files.description=action.payload.description
           //state.files.=action.payload.id
         })
         .addCase(postPost.rejected, (state, action) => {
@@ -233,6 +280,15 @@ const initialState={
           state.files.user_id=action.payload.users
         })
         .addCase(getFeed.rejected, (state, action) => {
+          //console.log(action.payload)
+        })
+        .addCase(getUserLikes.fulfilled, (state, action) => {
+          state.files.file_id=action.payload.images
+          state.files.description=action.payload.description
+          state.files.post_id=action.payload.ids
+          state.files.user_id=action.payload.users
+        })
+        .addCase(getUserLikes.rejected, (state, action) => {
           //console.log(action.payload)
         })
         .addCase(getUserPosts.fulfilled, (state, action) => {
@@ -288,8 +344,20 @@ const initialState={
         .addCase(getComments.rejected, (state, action) => {
           //console.log(action.payload)
         })
+        .addCase(deleteComment.fulfilled, (state, action) => {
+          //state.current.comments=action.payload
+        })
+        .addCase(deleteComment.rejected, (state, action) => {
+          //console.log(action.payload)
+        })
+        .addCase(deletePost.fulfilled, (state, action) => {
+          //state.current.comments=action.payload
+        })
+        .addCase(deletePost.rejected, (state, action) => {
+          //console.log(action.payload)
+        })
         
     }
   })
-  export const { updateCurrent , updateSent, updateUserSent} = post.actions;
+  export const { updateCurrent , updateSent, updateUserSent, dropPosts} = post.actions;
   export default post.reducer;

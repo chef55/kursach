@@ -18,7 +18,7 @@ function ProfileInfo(props) {
             <ProfileImage/>
             <div className='profile-info-name-about'>
                 <div className='profile-info-name'>{store.username}</div>
-                {session.auth?<><form encType='multipart/form-data' style={{display:'flex'}}onSubmit={(event)=>{
+                {session.username==store.username?<><form encType='multipart/form-data' style={{display:'flex'}}onSubmit={(event)=>{
                   event.preventDefault()
                   dispatch(postProfileImage(document.getElementById('new-image-file').files))
                 }}>

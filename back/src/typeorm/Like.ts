@@ -11,9 +11,9 @@ export class LikeTable{
 
     id:string;
 
-    @ManyToOne(()=>UserTable, (user)=>user.likes)
+    @ManyToOne(()=>UserTable, (user)=>user.likes, { onDelete: 'CASCADE' })
     user: UserTable
 
-    @ManyToOne(()=>PostTable, (post)=>post.likes)
+    @ManyToOne(()=>PostTable, (post)=>post.likes, { onDelete: 'CASCADE' })
     post: PostTable
 }

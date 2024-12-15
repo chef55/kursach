@@ -27,8 +27,8 @@ function LoginForm(props) {
         </form>
         <div  className ='new-account-button' onClick={()=>{
           dispatch(update({name:"login",value:false}))
-          dispatch(update({name:"post",value:true}))
-          dispatch(update({name:'register', value:false}))
+          dispatch(update({name:"post",value:false}))
+          dispatch(update({name:'register', value:true}))
           dispatch(update({name:'create_post', value:false}))}
         }>Create a new account</div>
       </div>

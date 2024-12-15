@@ -8,10 +8,12 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import { getSession } from '../../slices/session';
 import CreatePost from '../create_post/CreatePost';
-import { getFeed } from '../../slices/post';
+import { dropPosts, getFeed } from '../../slices/post';
 function Main() {
+
   const dispatch=useDispatch();
   dispatch(getSession())
+  dispatch(dropPosts())
   dispatch(getFeed(16))
   return (
     <>

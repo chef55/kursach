@@ -6,6 +6,7 @@ import { UserService } from 'src/user/user.service';
 import { CreateLikeDto } from 'src/dtos/CreateLike.sto';
 import { AppDataSource } from 'src/typeorm/DataSource';
 import { LikeTable } from 'src/typeorm';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('like')
 export class LikeController {
@@ -16,17 +17,19 @@ export class LikeController {
     return this.likeService.getPostLikes(params.id)
   }
 
-  @Get('user/:id')
-  getUserLikes(@Param() params:any, @Res() res) {
-    return AppDataSource.getRepository(LikeTable).createQueryBuilder("like").select("post").where('user_id=:id',{id:params.id})
+  @UseGuards(AuthenticatedGuard)
+  @Get('liked')
+  getUserLikes(@Session() session:Record<string,any>) {
+    return this.likeService.getUserLikes(session.passport.user.id)
   }
 
+  @UseGuards(AuthenticatedGuard)
   @Get('liked/:id')
   getLiked(@Param() params:any, @Session() session:Record<string,any>){
     return this.likeService.getLiked(params.id,session)
   }
   
-  //@UseGuards(AuthenticatedGuard)
+  @UseGuards(AuthenticatedGuard)
   @Post('create')
   postLike(@Body() createLikeDto:CreateLikeDto, @Session() session:Record<string,any>){
     return this.likeService.newLike(createLikeDto,session)

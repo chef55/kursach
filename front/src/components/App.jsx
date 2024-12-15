@@ -7,6 +7,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes,Route } from 'react-router-dom'
 import RegisterForm from './register/RegisterForm';
+import Liked from './Liked/Liked';
 function App() {
   return (
     <div className="App">
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main/>}/>
           <Route path="/profile/:id" element={<Profile/>}/>
+          <Route path="/liked" element={<Liked/>}/>
         </Routes>
       </Router>
     </div>

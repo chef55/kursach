@@ -18,7 +18,7 @@ export class PostController {
   getPostData(@Param() params:any) {
     return this.postService.getPostData(params.id);
   }
-
+  
   @Get('image/:id')
   getPostImage(@Param() params:any, @Res() res) {
     return of(res.sendFile(join(process.cwd(),'../uploads',params.id)))
@@ -34,7 +34,13 @@ export class PostController {
     return this.postService.getUserPosts(params.id)
   }
   
-  //@UseGuards(AuthenticatedGuard)
+  @UseGuards(AuthenticatedGuard)
+  @Get('delete/:id')
+  deletePost(@Param() params:any, @Session() session:Record<string,any>) {
+    return this.postService.deletePost(params.id,session)
+  }
+  
+  @UseGuards(AuthenticatedGuard)
   @Post('create')
   @UseInterceptors(FileInterceptor('file',{storage:diskStorage({
     destination: '../uploads',

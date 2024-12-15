@@ -31,8 +31,17 @@ export class PostService {
     return file
   }
 
+  async deletePost(id:string, session:Record<string,any>){
+    const post = await AppDataSource.getRepository(PostTable).createQueryBuilder('post').select().where("id=:id",{id:id}).leftJoinAndSelect('post.user','user').where('user_id=:id',{id:session.passport.user.id}).getOne()
+    if(post){
+      await AppDataSource.createQueryBuilder().delete().from(PostTable).where('id=:id',{id:id}).execute()
+      return true
+    }
+    return false
+  }
+
   async getFeed(num){
-    const a= [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+    const a= Array.from(Array(48).keys())
     const arr = await AppDataSource.getRepository(PostTable).createQueryBuilder('post').leftJoinAndSelect('post.user','user').where({id:In(a)}).getMany()
     const imgs=[]
     const ids=[]
@@ -64,6 +73,8 @@ export class PostService {
     })
     return {images:imgs,ids:ids,users:users,description:desc}
   }
+
+
 
   async createPost(file: Express.Multer.File, createPostDto:CreatePostDto, session: Record<string,any>){
     //console.log(session.passport)

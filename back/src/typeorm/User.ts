@@ -29,6 +29,6 @@ export class UserTable{
     @OneToMany(()=>LikeTable, (like)=>like.user)
     likes: LikeTable[]
     
-    @OneToMany(()=>CommentTable, (comment)=>comment.post)
+    @OneToMany(()=>CommentTable, (comment)=>comment.user)
     comments: CommentTable[]
 }

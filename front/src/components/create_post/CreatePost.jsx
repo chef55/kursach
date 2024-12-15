@@ -5,7 +5,7 @@ import { update } from '../../slices/render';
 
 function CreatePost(props) {
   const dispatch=useDispatch()
-  //const ready=useSelector(state=>state.post.ready)
+  const session=useSelector(state=>state.session.value.id)
   //var file = ''
   return (
     <>
@@ -16,7 +16,7 @@ function CreatePost(props) {
           const file=document.getElementById('create-post-file').files
           const text = document.getElementById('create-post-text').value
           //console.log(file)
-          dispatch(postPost({file: file, description: text}))
+          dispatch(postPost({file: file, description: text, user: session}))
       }}>
           <div className='create-post-label'>Description</div>
           <textarea type="text" className='create-post-text' id="create-post-text"></textarea>

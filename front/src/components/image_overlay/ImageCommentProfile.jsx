@@ -13,7 +13,7 @@ function ImageCommentProfile(props) {
       dispatch(update({name:'register', value:false}))
       dispatch(update({name:'create_post', value:false}))}
     }>
-        <div className='image-overlay-comment-profile-name'>{props.username}</div>
+    <div className='image-overlay-comment-profile-name'>{props.username}</div>
     </Link>
   );
 }

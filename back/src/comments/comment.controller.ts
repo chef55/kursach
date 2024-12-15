@@ -9,11 +9,18 @@ export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
   @Get(':id')
-  getPostLikes(@Param() params:any) {
+  getPostComments(@Param() params:any) {
     return this.commentService.getPostComments(params.id)
   }
+
+  @UseGuards(AuthenticatedGuard)
+  @Get('delete/:id')
+  deletePost(@Param() params:any, @Session() session:Record<string,any>) {
+    console.log("chef")
+    return this.commentService.deleteComment(params.id,session)
+  }
   
-  //@UseGuards(AuthenticatedGuard)
+  @UseGuards(AuthenticatedGuard)
   @Post('create')
   postLike(@Body() createCommentDto:CreateCommentDto, @Session() session:Record<string,any>){
     return this.commentService.newComment(createCommentDto,session)

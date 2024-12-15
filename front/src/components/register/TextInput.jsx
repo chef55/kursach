@@ -10,7 +10,7 @@ function TextInput(props) {
   const dispatch=useDispatch();
   return (
     <div>
-    <input type='text' className='login-form-input'
+    <input type={props.name=="password"?"password":"text"} className='login-form-input'
     onBlur={(event)=>{
     dispatch(update({name:props.name,value:event.target.value}))
     }}/>

@@ -33,6 +33,24 @@ body{
     align-items: center;
   }
 
+
+
+  .trashcan-comment{
+    width: 2vmin;
+    height: inherit;
+    display: grid;
+    object-fit:contain;
+    align-items: center;
+    cursor: pointer;
+  }
+  .trashcan-post{
+    width: 3vmin;
+    height: inherit;
+    display: grid;
+    object-fit:contain;
+    align-items: center;
+    cursor: pointer;
+  }
 /*Header------------------------------------------------*/
 
 .header-button{
@@ -65,7 +83,6 @@ body{
     display: flex;
 }
 .header-outer-wrapper{
-    backdrop-filter: blur(6px);
     position: fixed;
     width: 90vw;
     padding-top: 1vmin;
@@ -75,6 +92,7 @@ body{
     display: flex;
     border-bottom-left-radius: 1vmin;
     border-bottom-right-radius: 1vmin;
+    backdrop-filter: blur(6px);
     background: rgba(39, 40, 45, 0.5);
     z-index: 1;
 }
@@ -161,7 +179,6 @@ body{
     width: 60vw;
     margin: auto;
     margin-top: 10vmin;
-    border: 1px, black,solid;
 }
 
 .profile-info-wrapper{
@@ -286,23 +303,37 @@ body{
     height: 25vmin;
     background: #131417;
     border-bottom-left-radius: 1vmin;
+    position:relative;
 
+}
+
+.image-overlay-description-cover{
+    width:37.5vw;
+    height: 25vmin;
+    backdrop-filter: blur(6px);
+    background: rgba(39, 40, 45, 0.5);
+    border-bottom-left-radius: 1vmin;
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    display: grid;
+    align-items: center;
 }
 
 .image-overlay-description-profile-like{
     display: flex;
     position: relative;
     height: 7vmin;
+    z-index: 0;
 }
 
 .image-overlay-description-profile{
-    position: absolute;
     color:aliceblue;
     text-decoration: none;
     font-size: 2.5vmin;
     display: flex;
-    left:1vw;
-    top:1vmin;
+    margin-left:1vw;
+    margin-top:1vmin;
 }
 .image-overlay-description-like-wrapper{
     display: flex;
@@ -341,6 +372,19 @@ body{
     background: #202126;
     border-bottom-right-radius: 1vmin;
     border-top-right-radius: 1vmin;
+    position: relative;
+    z-index: 0;
+}
+
+.image-overlay-comments-block{
+    position: absolute;
+    width:17.5vw;
+    height: 80vmin;
+    backdrop-filter: blur(6px);
+    background: rgba(39, 40, 45, 0.5);
+    border-bottom-right-radius: 1vmin;
+    border-top-right-radius: 1vmin;
+    z-index: 1;
 }
 
 .image-overlay-comments{
@@ -445,22 +489,27 @@ body{
 }
 
 .image-overlay-comment-send{
-    margin-left:1vmin;
-    margin-right:1vmin;
-    width: 3vmin;
-    height: 3vmin;
+    margin-left:0.5vw;
+    margin-right:0.5vw;
+    width: 2vw;
+    height: 2vw;
     object-fit:fill;
+    cursor: pointer;
 }
 
 .image-overlay-comment-send-wrapper{
     display: grid;
     align-items: center;
+    width:3vw;
 }
 
 .image-overlay-comments-input-input{
     display: block;
     max-height:19.7vmin;
     min-height:19.7vmin;
+    min-width: 14.5vw;
+    max-width: 14.5vw;
+    width: auto;
     background:#292a30;
     color:white;
     outline: none;
@@ -508,7 +557,7 @@ body{
 .login-close{
     width: 100%;
     height: 100%;
-    position: absolute;
+    position:fixed;
     top:0;
     left:0;
     backdrop-filter: blur(6px);

@@ -11,11 +11,11 @@ export class CommentTable{
 
     id:string;
 
-    @ManyToOne(()=>UserTable, (user)=>user.comments)
+    @ManyToOne(()=>UserTable, (user)=>user.comments, { onDelete: 'CASCADE' })
     user: UserTable
 
-    @ManyToOne(()=>PostTable, (post)=>post.comments)
-    post: UserTable
+    @ManyToOne(()=>PostTable, (post)=>post.comments, { onDelete: 'CASCADE' })
+    post: PostTable
 
     @Column()
     text:string;

@@ -10,6 +10,7 @@ import { getSession } from '../../slices/session';
 import ImageOverlay from '../image_overlay/ImageOverlay';
 import CreatePost from '../create_post/CreatePost';
 import NewPost from './NewPost';
+import HeaderLikedButton from './HeaderLikedButton';
 function Header(props) {
   const render=useSelector(state=>state.render.value)
   const session=useSelector(state=>state.session.value)
@@ -20,10 +21,8 @@ function Header(props) {
     <div className="header-outer-wrapper">
       <div className='header-inner-wrapper'>   
       <LogoButton/>
-          {props.button_names.map((val,i)=>
-              <HeaderButton key={i} name={val} path={props.button_paths[i]}/>
-          )}
-        <NewPost/>
+      {session.auth?<HeaderLikedButton/>:<></>}
+      {session.auth?<NewPost/>:<></>}
       </div>
       {session.auth?<HeaderProfile username={session.username}/>:<LoginButton/>}
     </div>

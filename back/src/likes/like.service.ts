@@ -26,8 +26,27 @@ export class LikeService {
 
   
   async getUserLikes(id:string){
-    const posts = await AppDataSource.getRepository(PostTable).findOneBy({id})
-    return posts
+    const user = await AppDataSource.getRepository(UserTable).findOneBy({id:id})
+    const like = await AppDataSource.getRepository(LikeTable).findBy({user:user})
+    const arr=[]
+    like.map((e)=>{
+      arr.push(e.id)
+    })
+    const likes = await AppDataSource.getRepository(LikeTable).createQueryBuilder('like').where({id:In(arr)}).leftJoinAndSelect("like.post",'post').leftJoinAndSelect("post.user",'user').getMany()
+    console.log(arr)
+    //return await AppDataSource.getRepository(LikeTable).createQueryBuilder('like').where({user: }) leftJoinAndSelect('post.likes','like').leftJoinAndSelect('like.user','user').where("user_id=:id",{id:id}).getMany()
+    const imgs=[]
+    const ids=[]
+    const users=[]
+    const desc = []
+    likes.map((e)=>{
+      imgs.push(e.post.image_id)
+      ids.push(e.post.id)
+      users.push(e.post.user.id)
+      desc.push(e.post.description)
+    })
+    //console.log(arr)
+    return {images:imgs,ids:ids,users:users,description:desc}
   }
 
 

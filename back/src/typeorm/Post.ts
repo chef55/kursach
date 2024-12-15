@@ -20,7 +20,7 @@ export class PostTable{
     @Column('varchar')
     image_name=''
 
-    @ManyToOne(()=>UserTable, (user)=>user.posts)
+    @ManyToOne(()=>UserTable, (user)=>user.posts, { onDelete: 'CASCADE' })
     user: UserTable
 
     @OneToMany(()=>LikeTable, (like)=>like.post)
