@@ -362,6 +362,9 @@ body{
     margin-left:1vw;
     margin-right: 1vw;
     height:18vmin;
+    word-break: break-all;
+    text-wrap: wrap;
+    
 }
 
 /*--------------------comment-------------------------------*/
@@ -414,6 +417,11 @@ body{
     position: absolute;
     font-size: 1.3vmin;
     right:0;
+}
+.image-overlay-comments-single-text{
+    width: 15.5vw;
+    text-wrap: wrap;
+    word-break: break-all;
 }
 
 
@@ -481,6 +489,7 @@ body{
 }
 
 .image-overlay-comments-input{
+    text-align: left;
     display:flex;
     min-height:20vmin;
     max-height:20vmin;
@@ -515,8 +524,10 @@ body{
     outline: none;
     border:none;
     font-size: 2vmin;
-    padding:0;
-    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
     resize: none;
 }
 

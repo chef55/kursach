@@ -6,7 +6,7 @@ function CommentInput(props) {
   const dispatch=useDispatch()
   return (
     <div className='image-overlay-comments-input'>
-        <textarea type="text" className='image-overlay-comments-input-input' id="comment-textarea"></textarea>
+        <textarea type="text" className='image-overlay-comments-input-input' id="comment-textarea" maxLength={98}></textarea>
         <div className='image-overlay-comment-send-wrapper'><img className="image-overlay-comment-send"src={send} onClick={()=>{
           const text=document.getElementById('comment-textarea').value
           dispatch(postComment({text:text, post: props.post_id}))

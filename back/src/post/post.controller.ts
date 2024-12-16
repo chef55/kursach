@@ -47,22 +47,18 @@ export class PostController {
     filename: (req,file,cb)=>{
       cb(null, Date.now().toString()+"."+file.mimetype.split('/')[1].toString())
     }
-  })},/*{dest:'../uploads'}*/))
+  })},))
   createPost(@UploadedFile(
-      new ParseFilePipeBuilder()
-      .addFileTypeValidator({
-        fileType: 'image',
-      })
-      //.addMaxSizeValidator({
-      //  maxSize: 100000
-      //})
-      .build({
-        errorHttpStatusCode: HttpStatus.BAD_REQUEST,
-      }),
-    )
-      file: Express.Multer.File,
-      @Body() createPostDto:CreatePostDto, @Session() session:Record<string,any>){
-        //console.log(Date.now())
-        return this.postService.createPost(file, createPostDto, session)
-      }
+    new ParseFilePipeBuilder()
+    .addFileTypeValidator({
+      fileType: 'image',
+    })
+    .build({
+      errorHttpStatusCode: HttpStatus.BAD_REQUEST,
+    }),
+  )
+  file: Express.Multer.File,
+  @Body() createPostDto:CreatePostDto, @Session() session:Record<string,any>){
+  return this.postService.createPost(file, createPostDto, session)
+  }
 }

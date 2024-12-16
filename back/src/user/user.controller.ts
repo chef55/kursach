@@ -1,7 +1,6 @@
 import { Body, Controller, Get, HttpStatus, Param, ParseFilePipeBuilder, Post, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from '../dtos/CreateUser.dto';
-import { diskStorage } from 'multer';
 import { Session } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthenticatedGuard } from 'src/auth/local-auth.guard';
@@ -14,7 +13,6 @@ export class UserController {
 
   @Get(':id')
   getUser(@Param() params:any) {
-    //console.log(params.id)
     return this.userService.getUser(params.id);
   }
 
@@ -27,23 +25,19 @@ export class UserController {
   @Post('image')
   @UseInterceptors(FileInterceptor('file'))
   createPost(@UploadedFile(
-      new ParseFilePipeBuilder()
-      .addFileTypeValidator({
-        fileType: 'image',
-      })
-      //.addMaxSizeValidator({
-      //  maxSize: 100000
-      //})
-      .build({
-        errorHttpStatusCode: HttpStatus.BAD_REQUEST,
-      }),
-    )
-      file: Express.Multer.File,
-      @Session() session:Record<string,any>
-    ){
-      console.log(file.originalname)
-        return this.userService.newProfileImage(file,session)
-    }
+    new ParseFilePipeBuilder()
+    .addFileTypeValidator({
+      fileType: 'image',
+    })
+    .build({
+      errorHttpStatusCode: HttpStatus.BAD_REQUEST,
+    }),
+  )
+  file: Express.Multer.File,
+  @Session() session:Record<string,any>){
+    console.log(file.originalname)
+      return this.userService.newProfileImage(file,session)
+  }
   
   @Post('create')
   createUser(@Body() createUserDto:CreateUserDto){

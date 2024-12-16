@@ -19,7 +19,7 @@ function CreatePost(props) {
           dispatch(postPost({file: file, description: text, user: session}))
       }}>
           <div className='create-post-label'>Description</div>
-          <textarea type="text" className='create-post-text' id="create-post-text"></textarea>
+          <textarea type="text" className='create-post-text' id="create-post-text" maxLength={200}></textarea>
           
         <input type="file" accept="image/*" className='create-post-file' id="create-post-file"></input>
         <button className='login-submit-button' type="submit">Create Post</button>
