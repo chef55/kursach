@@ -11,7 +11,7 @@ function LoginButton(props) {
       dispatch(update({name:'register', value:false}))
       dispatch(update({name:'create_post', value:false}))
     }}>
-        Log In To View
+        Log In
     </div>
   );
 }

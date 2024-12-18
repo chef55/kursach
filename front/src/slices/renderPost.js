@@ -11,13 +11,13 @@ const initialState={
 
   export const getPost=createAsyncThunk('render/getPost',async(arg)=>{
       const response = await axios.get('http://localhost:3001/post/post',arg,{withCredentials:true})
-      console.log(response)
+      //console.log(response)
       return response.data
     }
   )
   export const getImage=createAsyncThunk('render/getImage',async(arg)=>{
     const response = await axios.get('http://localhost:3001/post/image',arg,{withCredentials:true})
-    console.log(response)
+    //console.log(response)
     return response.data
   }
 )

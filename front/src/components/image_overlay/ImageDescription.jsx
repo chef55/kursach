@@ -15,7 +15,7 @@ function ImageDescription(props) {
       {session==0?<div className='image-overlay-description-cover'><LoginButton/></div>:<></>}
       <div className='image-overlay-description-profile-like'>
         <ProfileButton/>
-        {current.user_id==session?<img src={trash} className='trashcan-post' onClick={()=>{
+        {current.user_id==session||session==1?<img src={trash} className='trashcan-post' onClick={()=>{
           dispatch(deletePost(current.post_id))
           window.location="/profile/"+session
         }}></img>:<></>}

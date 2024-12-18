@@ -33,7 +33,7 @@ export class LikeService {
       arr.push(e.id)
     })
     const likes = await AppDataSource.getRepository(LikeTable).createQueryBuilder('like').where({id:In(arr)}).leftJoinAndSelect("like.post",'post').leftJoinAndSelect("post.user",'user').getMany()
-    console.log(arr)
+    //console.log(arr)
     //return await AppDataSource.getRepository(LikeTable).createQueryBuilder('like').where({user: }) leftJoinAndSelect('post.likes','like').leftJoinAndSelect('like.user','user').where("user_id=:id",{id:id}).getMany()
     const imgs=[]
     const ids=[]

@@ -35,7 +35,7 @@ export class UserController {
   )
   file: Express.Multer.File,
   @Session() session:Record<string,any>){
-    console.log(file.originalname)
+    //console.log(file.originalname)
       return this.userService.newProfileImage(file,session)
   }
   

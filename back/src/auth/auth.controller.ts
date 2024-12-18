@@ -21,7 +21,7 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('')
   authenticateUser(@Body() logInDto:LogInDto){
-    console.log("sing in")
+    //console.log("sing in")
     return this.authService.validateUser(logInDto.username, logInDto.password)
   }
 }

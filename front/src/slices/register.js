@@ -13,7 +13,7 @@ const initialState={
   }
 }
 
-  export const postRegister=createAsyncThunk('register/postRegister',async(arg,{rejectWithValue})=>{
+  export const postRegister=createAsyncThunk('register/postRegister',async(arg,{rejectWithValue, useDispatch})=>{
     try{
       const res = await axios.post('http://localhost:3001/user/create',arg,{withCredentials:true})
       return res.data
@@ -42,7 +42,7 @@ const initialState={
         state.ready.email=""
         state.ready.username=""
         state.ready.password=""
-        console.log("drop")
+        //console.log("drop")
       }
     },
     extraReducers(builder) {

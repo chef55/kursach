@@ -16,7 +16,7 @@ export class CommentController {
   @UseGuards(AuthenticatedGuard)
   @Get('delete/:id')
   deletePost(@Param() params:any, @Session() session:Record<string,any>) {
-    console.log("chef")
+    //console.log("chef")
     return this.commentService.deleteComment(params.id,session)
   }
   

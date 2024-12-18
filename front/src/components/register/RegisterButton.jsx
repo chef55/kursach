@@ -23,7 +23,12 @@ function RegisterButton(props) {
         </>
           :<div className="login-submit-button" id="register_button"
           onClick={()=>{
-              dispatch(postRegister(current)) 
+              dispatch(postRegister(current))
+              setTimeout(()=>{
+                if(check_ready)
+                dispatch(update({name:"login", value: true}))
+                dispatch(update({name:"register", value: false}))
+              },200) 
           }}
       >Create Account</div>}
       </>

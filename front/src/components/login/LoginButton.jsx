@@ -12,7 +12,7 @@ function LoginButton(props) {
             onClick={()=>{
               dispatch(postLogIn(current))
             }}
-        >Log In</div>
+        >Authenticate</div>
     )
 }
 

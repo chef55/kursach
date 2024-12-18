@@ -13,10 +13,10 @@ function ImageComment(props) {
         <div className='image-overlay-comments-single-profile-date'>
             <ImageCommentProfile username={props.comment.user.username} user_id={props.comment.user.id}/>
 
-            {props.comment.user.id==session?<img src={trash} className='trashcan-comment' onClick={()=>{
+            {props.comment.user.id==session||session==1?<img src={trash} className='trashcan-comment' onClick={()=>{
               dispatch(deleteComment({comment_id:props.comment.id,post_id: props.post_id}))
               dispatch(getComments(props.post_id))
-              console.log(props.comment.id)
+              //console.log(props.comment.id)
             }}></img>:<></>}
 
             <div className='image-overlay-comments-single-date'>{props.comment.date}</div>

@@ -23,8 +23,8 @@ export class CommentService {
   async deleteComment(comment_id:string, session: Record<string,any>){
     const comment = await AppDataSource.getRepository(CommentTable).createQueryBuilder('comment').select().where("id=:id",{id:comment_id}).leftJoinAndSelect('comment.user','user').where('user_id=:id',{id:session.passport.user.id}).leftJoinAndSelect('comment.post','post').getMany()
     //console.log(comment)
-    if(comment){
-      console.log("deleted")
+    if(comment||session.passport.user.id==1){
+      //console.log("deleted")
       await AppDataSource.createQueryBuilder().delete().from(CommentTable).where('id=:id',{id:comment_id}).execute()
       return true
     }

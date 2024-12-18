@@ -33,7 +33,7 @@ export class PostService {
 
   async deletePost(id:string, session:Record<string,any>){
     const post = await AppDataSource.getRepository(PostTable).createQueryBuilder('post').select().where("id=:id",{id:id}).leftJoinAndSelect('post.user','user').where('user_id=:id',{id:session.passport.user.id}).getOne()
-    if(post){
+    if(post||session.passport.user.id==1){
       await AppDataSource.createQueryBuilder().delete().from(PostTable).where('id=:id',{id:id}).execute()
       return true
     }
